@@ -7,33 +7,25 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ProductData } from './products/product-data';
 
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './home/welcome.component';
-import { PageNotFoundComponent } from './page-not-found.component';
+import { AppRoutingModule } from './app-routing.module';
 
 /* Feature Modules */
 import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
-    RouterModule.forRoot([
-      { path: 'welcome', component: WelcomeComponent},
-      { path: '', redirectTo: 'welcome', pathMatch: 'full'},
-      { path: '**', component: PageNotFoundComponent}
-    ]),
     ProductModule,
     UserModule,
-    MessageModule
+    MessageModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
-    WelcomeComponent,
-    PageNotFoundComponent
   ],
   bootstrap: [AppComponent]
 })
